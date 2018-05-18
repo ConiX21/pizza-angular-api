@@ -1,0 +1,32 @@
+<!-- <div class="row">
+  <div *ngFor="let c of pizzas.categories" class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+    <a href="#" class="thumbnail">
+      <img [src]="c.category" alt="">
+      {{c.category}}
+    </a>
+    <div *ngFor="let p of c.pizzas ">
+      {{p.Title}}
+    </div>
+  </div>
+</div> -->
+<div class="row">
+  <div *ngFor="let pizza of pizzas" class="col-xs-4 col-sm-4 col-md-4 col-lg-4" (click)="currentPizza = pizza">
+    <a class="thumbnail">
+      <img [src]="pizza.imagePath" alt="">
+    </a>
+  </div>
+</div>
+
+<div *ngIf="err" class="alert alert-danger">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <strong>Pizza service !</strong> {{err}}
+</div>
+
+<pi-pagination [pages]="pages" (changeEvent)="change($event)" #myPager></pi-pagination>
+<!-- <pi-pagination [pages]="[0,1,2,3,4,5]" (changeEvent)="change($event)" ></pi-pagination> -->
+
+<hr>
+<pi-detail *ngIf="currentPizza" [pizza]="currentPizza" [id]="currentPizza?.idPizza"></pi-detail>
+<pi-pizza-add></pi-pizza-add>
+
+
